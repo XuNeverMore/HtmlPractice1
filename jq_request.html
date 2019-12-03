@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript">
+    var page = 0;
+
+    function loadData() {
+      page += 1;
+      var url = "https://api.apiopen.top/getJoke?page=" + page + "&count=1&type=video";
+      $("ol").empty();
+      $.get(url, function(data, status) {
+        if (data.code == 200) {
+          var list = data.result;
+          var item = list[0];
+          var title = item.text;
+          $("#iv").attr("src", item.thumbnail);
+          $("#a_link").attr("href", item.video);
+          $("#title").text(title);
+
+        }
+      });
+    }
+    $(document).ready(function() {
+      // console.log = "test";
+      loadData();
+      $("#next").click(function() {
+        loadData();
+      });
+    });
+  </script>
+  <style media="screen">
+    body {
+      background-color: #333333
+    }
+
+    div {
+      margin:auto;
+      width:50%;
+      border: 3px solid green;
+      padding: 10px;
+    }
+
+
+    ol {
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    p {
+      width: 200px;
+      color: white;
+      font-style: oblique 40deg;
+      font-size: 1.2em;
+    }
+
+
+    img {
+      margin:auto;
+      width:100%;
+    }
+
+    button{
+      width:100%;
+      margin:auto;
+      background-color:#00000000;
+      border:none;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div  class="content">
+
+    <img id="iv" src="" alt="">
+    <a id="a_link" href=""><p id="title"></p></a>
+    <div>
+      <button type="button" id="next" name="button">下一页</button>
+    </div>
+  </div>
+</body>
+
+</html>

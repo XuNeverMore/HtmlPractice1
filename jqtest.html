@@ -7,14 +7,23 @@
   <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      $("button").click(function() {
-        $("p").hide();
+      // $("button").click(function() {
+      //   $("p").hide();
+      // });
+      $("button").click(function(){
+        $("div").animate({left:200},"slow");
       });
     });
   </script>
+  <style media="screen">
+    div{
+      position:absolute
+    }
+  </style>
 </head>
-
 <body>
+  <div style="top:200px;background-color:red;height:100px;width:200px"></div>
+
   <h2>This is a heading</h2>
   <p>This is a paragraph.</p>
   <p>This is another paragraph.</p>
